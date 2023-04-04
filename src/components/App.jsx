@@ -1,14 +1,17 @@
-import { Layout } from 'components/Layout/Layout';
-import { AppBar } from 'components/AppBar/AppBar';
-import { TaskForm } from 'components/TaskForm/TaskForm';
-import { TaskList } from 'components/TaskList/TaskList';
+import React, { useState, useEffect } from 'react';
+import { ContactLst } from './ContactLst/ContactList';
+import { Filter } from './Filter/Filter';
+import { PhonebookForm } from './PhonebookForm/PhoneForm';
+import { AppContainer } from './App.styled';
 
 export const App = () => {
   return (
-    <Layout>
-      <AppBar />
-      <TaskForm />
-      <TaskList />
-    </Layout>
+    <AppContainer>
+      <h1>Phonebook</h1>
+      <PhonebookForm />
+      <h2>Contacts</h2>
+      <Filter />
+      <ContactLst />
+    </AppContainer>
   );
 };
