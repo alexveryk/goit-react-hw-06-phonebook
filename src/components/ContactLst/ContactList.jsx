@@ -16,9 +16,6 @@ export const ContactLst = () => {
   const constacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
 
-  console.log('constacts', constacts);
-  console.log('filter', filter);
-
   const dispatch = useDispatch();
   const handleDelete = id => dispatch(deleteContact(id));
 
