@@ -1,4 +1,5 @@
 import { Formik } from 'formik';
+import * as Yup from 'yup';
 import {
   PhoneForm,
   FormLabel,
@@ -6,10 +7,8 @@ import {
   BtnForm,
   ErrorMessageForm,
 } from './PhoneForm.styled';
-import * as Yup from 'yup';
-// import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/actions';
+import { addContact } from 'redux/contactsSlice';
 
 const PhonebookSchema = Yup.object().shape({
   name: Yup.string()
@@ -21,7 +20,6 @@ const PhonebookSchema = Yup.object().shape({
 
 export const PhonebookForm = () => {
   const dispatch = useDispatch();
-  // console.log(dispatch);
 
   return (
     <Formik
@@ -60,7 +58,3 @@ export const PhonebookForm = () => {
     </Formik>
   );
 };
-
-// PhonebookForm.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-// };
