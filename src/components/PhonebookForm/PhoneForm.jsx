@@ -7,8 +7,9 @@ import {
   BtnForm,
   ErrorMessageForm,
 } from './PhoneForm.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contactsSlice';
+import { getContacts } from 'redux/selectors';
 
 const PhonebookSchema = Yup.object().shape({
   name: Yup.string()
@@ -21,12 +22,22 @@ const PhonebookSchema = Yup.object().shape({
 export const PhonebookForm = () => {
   const dispatch = useDispatch();
 
+  const contacts = useSelector(getContacts);
+  console.log(contacts);
+  const addNewContact = newContacts => {
+    if (contacts.some(el => el.name === newContacts.name)) {
+      alert(`${newContacts.name} is alredy in contacts`);
+      return;
+    }
+    dispatch(addContact(newContacts));
+  };
+
   return (
     <Formik
       initialValues={{ name: '', number: '' }}
       validationSchema={PhonebookSchema}
       onSubmit={(values, actions) => {
-        dispatch(addContact(values));
+        addNewContact(values);
         actions.resetForm();
       }}
     >
